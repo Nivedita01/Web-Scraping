@@ -1,4 +1,4 @@
-from Glassdoor_pagination import Glassdoor
+from JobSearchSite import JobSite
 import numpy as np
 import Driver_Paths
 from JobPortal_Common_Defs import JobPortal_Common
@@ -41,12 +41,12 @@ browser_list = ["chrome", "gecko", "msedge"]
 
 for i in range(job_title.size):
     driver = jp_common.driver_creation("chrome")
-    gObj = Glassdoor(driver, Driver_Paths.glassdoor_url)
+    gObj = JobSite(driver, Driver_Paths.url)
     jp_common.get_url(driver, gObj.url)
     for j in range(job_location.size):
         print("Searching for Job Title :: " + job_title[i])
         print("Searching for Job Location :: " + job_location[j])
-        gObj.glassdoor_get_jobs(job_title[i], job_location[j], jp_common)
+        gObj.get_jobs(job_title[i], job_location[j], jp_common)
     jp_common.exit_browser(driver)
 
 'Quit Browser'

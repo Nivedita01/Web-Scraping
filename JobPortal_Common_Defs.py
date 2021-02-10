@@ -3,14 +3,8 @@ import datetime
 import json
 import logging
 import re
-import smtplib
-import ssl
 import sys
 import time
-from email import encoders
-from email.mime.base import MIMEBase
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 from os import path
 
 import pandas
@@ -19,7 +13,6 @@ from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.ui import WebDriverWait
 
 import Driver_Paths
 
@@ -198,7 +191,7 @@ class JobPortal_Common:
                     # if not ("accommodation" in email or "disabilit" in email or "employeeservice" in email ):
                     if not (re.search('accommodation', email, re.IGNORECASE) or re.search('disabilit', email,
                                                                                           re.IGNORECASE) or re.search(
-                                                                                            'employeeservice', email, re.IGNORECASE)):
+                        'employeeservice', email, re.IGNORECASE)):
                         email_list.append(email)
                         self.job_email_list.append(email)
                         print(email)
@@ -334,7 +327,6 @@ class JobPortal_Common:
             print("error in find web element ", e)
             logging.error("Unexpected Exception raised in find_web_element " + element_desc)
             logging.exception(e)
-
 
     def find_web_element_css(self, css, element_desc, element_count, wait):
         try:
